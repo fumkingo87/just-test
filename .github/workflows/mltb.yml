@@ -35,7 +35,7 @@ jobs:
          timeout-minutes: 330
          continue-on-error: true
          run: |
-           parallel -u ::: 'sudo apt-get install qbittorrent-nox' 'git clone https://github.com/${GITHUB_REPOSITORY} clean && cd clean && sudo bash cleanup.sh' 'git clone https://${{ secrets.GH_TOKEN }}@github.com/${{ secrets.USER }}/${{ secrets.MIRROR_REPOSLUG }} mltb && cd mltb && sudo docker-compose up --build'
+           parallel -u ::: 'sudo apt-get install qbittorrent-nox' 'git clone https://github.com/${GITHUB_REPOSITORY} clean && cd clean && sudo bash cleanup.sh' 'git clone https://${{ secrets.GH_TOKEN }}@github.com/${{ secrets.MIRROR_REPOSLUG }} mltb && cd mltb && sudo docker-compose up --build'
        - name: Send Record to Github
          continue-on-error: true
          run: |
