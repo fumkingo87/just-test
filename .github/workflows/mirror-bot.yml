@@ -45,7 +45,7 @@ jobs:
         timeout-minutes: 340
         continue-on-error: true          
         run: |
-           parallel -u ::'git clone https://github.com/${GITHUB_REPOSITORY} clean && cd clean && sudo bash cleanup.sh' 'git clone https://${{ secrets.GH_TOKEN }}@github.com/${{ secrets.MIRROR_REPOSLUG }} mltb && cd mltb && sudo docker-compose up --build'
+           parallel -u ::'git clone https://github.com/${GITHUB_REPOSITORY} clean && cd clean && sudo bash cleanup.sh' 'docker run --privileged --rm -i mirror-bot'
 
       - name: Loop Workflow
         continue-on-error: true
