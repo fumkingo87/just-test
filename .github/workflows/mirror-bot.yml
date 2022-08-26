@@ -7,7 +7,6 @@ on:
   workflow_dispatch:
    
 env:
-  # Change these values if you have forked it for your own works
   GitHubMail: ${{ secrets.GH_MAIL }}
   GitHubName: "69root69" 
   Branch: "main"
@@ -28,7 +27,7 @@ jobs:
           echo "https://${GitHubName}:${{ secrets.GH_TOKEN }}@github.com" > ~/.git-credentials
 
       # Cleanup The Actions Workspace Using Custom Composite Run Actions
-      #- uses: rokibhasansagar/slimhub_actions@main
+      # - uses: rokibhasansagar/slimhub_actions@main
 
       - name: Clone The Secret Mirror Repository
         run: |
@@ -45,7 +44,7 @@ jobs:
         timeout-minutes: 340
         continue-on-error: true          
         run: |
-           parallel -u ::'git clone https://github.com/${GITHUB_REPOSITORY} clean && cd clean && sudo bash cleanup.sh' 'docker run --privileged --rm -i mirror-bot'
+           parallel -u ::: 'docker run --privileged --rm -i mirror-bot' 'git clone https://github.com/${GITHUB_REPOSITORY} clean && cd clean && sudo bash cleanup.sh'
 
       - name: Loop Workflow
         continue-on-error: true
