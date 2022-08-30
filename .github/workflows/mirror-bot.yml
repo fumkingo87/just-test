@@ -9,7 +9,7 @@ on:
 env:
   GitHubMail: ${{ secrets.GH_MAIL }}
   GitHubName: "69root69" 
-  Branch: "main"
+  Branch: "master"
 
 jobs:
   build:
