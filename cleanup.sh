@@ -1,5 +1,3 @@
-sleep 125
-
 if [[ $OSTYPE != "linux-gnu" ]]; then
   printf "This Cleanup Script Should Be Run On Ubuntu Runner.\n"
   exit 1
