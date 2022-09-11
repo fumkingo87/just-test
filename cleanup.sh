@@ -17,6 +17,26 @@ unset SECONDS_LEFT
 echo "::group::Disk Space Before Cleanup"
 df -hlT /
 echo "::endgroup::"
+sudo apt-get remove -y temurin-17-jdk
+sudo apt-get remove -y temurin-11-jdk
+sudo apt-get remove -y powershell
+sudo apt-get remove -y linux-modules-5.15.0-1017-azure
+sudo apt-get remove -y linux-azure-5.15-headers-5.15.0-1017
+sudo apt-get remove -y gcc-10
+sudo apt-get remove -y gcc-9
+sudo apt-get remove -y g++-10
+sudo apt-get remove -y g++-9
+sudo apt-get remove -y cpp-9
+sudo apt-get remove -y cpp-10
+sudo apt-get remove -y linux-headers-5.15.0-1017-azure
+sudo apt-get remove -y git-lfs
+sudo apt-get remove -y shellcheck
+sudo apt-get remove -y locales
+sudo apt-get remove -y iso-codes
+sudo apt-get remove -y linux-azure-5.15-tools-5.15.0-1017
+sudo apt-get remove -y p7zip-full
+sudo apt-get autoclean && sudo apt-get autoremove && sudo apt-get clean
+sudo apt-get install --no-install-recommends -y git
 
 echo "::group::Clearing Docker Image Caches"
 docker rmi -f $(docker images -q) &>/dev/null
@@ -132,7 +152,8 @@ echo "::endgroup::"
 echo "::group::Disk Space After Cleanup"
 df -hlT /
 echo "::endgroup::"
+dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -n
 
-printf "🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀"
+printf "🚀🚀🚀🚀\n🚀🚀🚀🚀\n🚀🚀🚀🚀\n🚀🚀🚀🚀"
 
 exit
