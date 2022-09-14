@@ -8,8 +8,8 @@ on:
    
 env:
   GitHubMail: ${{ secrets.GH_MAIL }}
-  GitHubName: "69root69" 
-  Branch: "master"
+  GitHubName: "ArghyadipBiswas" 
+  Branch: "main"
 
 jobs:
   build:
