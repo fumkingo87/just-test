@@ -7,8 +7,8 @@ on:
   workflow_dispatch:
    
 env:
-  GitHubMail: ${{ secrets.GH_MAIL }}
-  GitHubName: "ArghyadipBiswas" 
+  GitHubMail: "root9876+2@protonmail.com"
+  GitHubName: "fumkingo87" 
   Branch: "main"
 
 jobs:
