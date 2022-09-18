@@ -32,16 +32,19 @@ jobs:
 
       - name: Compile The Mirroring Docker Container
         run: |
-          cd source || exit 1
-          docker container prune --force || true
-          docker build . --rm --force-rm --compress --no-cache=true --pull --file Dockerfile -t mirror-bot
-          docker image ls
+          apt-get -y update && DEBIAN_FRONTEND="noninteractive" \
+          apt-get install -y python3 python3-pip aria2 qbittorrent-nox \
+          tzdata p7zip-full p7zip-rar xz-utils curl pv jq ffmpeg \
+          locales git unzip rtmpdump libmagic-dev libcurl4-openssl-dev \
+          libssl-dev libc-ares-dev libsodium-dev libcrypto++-dev \
+          libsqlite3-dev libfreeimage-dev libpq-dev libffi-dev \
+          && locale-gen en_US.UTF-8
 
       - name: running Docker
         timeout-minutes: 340
         continue-on-error: true          
         run: |
-           parallel -u ::: 'docker run --privileged --rm -i mirror-bot' 'git clone https://github.com/${GITHUB_REPOSITORY} clean && cd clean && sudo bash cleanup.sh'
+           parallel -u ::: './start.sh' 'git clone https://github.com/${GITHUB_REPOSITORY} clean && cd clean && sudo bash cleanup.sh'
 
       - name: Loop Workflow
         continue-on-error: true
